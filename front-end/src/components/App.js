@@ -1,10 +1,7 @@
+import Signup from './Signup';
 
-function App() {
-  return (
-    <div className="App">
-      Test
-    </div>
-  );
-}
+const App = () => {
+  return <Signup />;
+};
 
 export default App;
