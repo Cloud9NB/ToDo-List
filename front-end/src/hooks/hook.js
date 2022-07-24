@@ -8,26 +8,27 @@ const useApplicationData = () => {
   });
   console.log(state.user);
   const signupUser = (username, password) => {
-    const user = [
-      {
-        username,
-        password,
-      },
-      ...state.user,
-    ];
-
     const newUser = {
       username,
       password,
     };
 
-    return axios
-      .post(`http://localhost:8001/api/register`, newUser)
-      .then(() => {
-        setState(prev => {
-          return { ...prev, user };
-        });
+    return axios.post('http://localhost:8001/api/register', newUser);
+  };
+
+  const loginUser = (username, password) => {
+    const user = [
+      {
+        username,
+        password,
+      },
+    ];
+
+    return axios.post('http://localhost:8001/api/login', user).then(() => {
+      setState(prev => {
+        return { ...prev, user: user[0].username };
       });
+    });
   };
 
   useEffect(() => {
@@ -37,6 +38,7 @@ const useApplicationData = () => {
   return {
     state,
     signupUser,
+    loginUser,
   };
 };
 
