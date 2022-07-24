@@ -7,6 +7,7 @@ const useApplicationData = () => {
     todo: '',
   });
   console.log(state.user);
+  console.log(state.todo);
   const signupUser = (username, password) => {
     const newUser = {
       username,
@@ -32,8 +33,14 @@ const useApplicationData = () => {
   };
 
   useEffect(() => {
-    const apiTodo = 'http://localhost:8001/api/register';
-  });
+    const apiTodo = `http://localhost:8001/api/${state.user}/tasks`;
+    axios.get(apiTodo).then(all => {
+      setState(prev => ({
+        ...prev,
+        todo: all.data,
+      }));
+    });
+  }, [state.user]);
 
   return {
     state,

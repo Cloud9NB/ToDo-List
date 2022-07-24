@@ -11,13 +11,14 @@ const dbParams = require('./lib/db');
 const db = new Pool(dbParams);
 db.connect();
 
-const users = require('./src/routes/users');
-
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+const users = require('./src/routes/users');
+const tasks = require('./src/routes/tasks');
 app.use('/api', users(db));
+app.use('/api', tasks(db));
 
 app.listen(port, () => {
   console.log(
