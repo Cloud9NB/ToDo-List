@@ -5,20 +5,21 @@ import useVisualMode from '../hooks/useVisualMode';
 import useApplicationData from '../hooks/hook';
 
 const App = () => {
-  const { state } = useApplicationData();
+  const { state, signupUser } = useApplicationData();
 
   const LOGIN = 'LOGIN';
   const SIGNUP = 'SIGNUP';
   const SHOW = 'SHOW';
 
-  const { mode, transition, back } = useVisualMode(state.users ? SHOW : LOGIN);
+  const { mode, transition, back } = useVisualMode(state.user ? SHOW : SIGNUP);
 
   return (
     <div>
-      <Signup />
-      {/* {mode === SIGNUP && <Signup />}
+      {mode === SIGNUP && (
+        <Signup signupUser={signupUser} transition={transition} />
+      )}
       {mode === LOGIN && <Login />}
-      {mode === SHOW && <TodoList />} */}
+      {mode === SHOW && <TodoList />}
     </div>
   );
 };

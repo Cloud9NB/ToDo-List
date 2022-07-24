@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import '../css/signup.css';
 
-const Signup = () => {
+const Signup = ({ signupUser, transition }) => {
   const [state, setState] = useState({
     username: '',
     password: '',
   });
 
-  const signup = (username, password) => {};
+  const signup = (username, password) =>
+    signupUser(username, password).then(() => transition('LOGIN'));
 
   return (
     <div className='signup-form'>
