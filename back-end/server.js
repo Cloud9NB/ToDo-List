@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const port = 8001;
+const bodyParser = require('body-parser');
+
 const cors = require('cors');
 
 const { Pool } = require('pg');
@@ -9,11 +11,13 @@ const dbParams = require('./lib/db');
 const db = new Pool(dbParams);
 db.connect();
 
-app.use(cors());
+const users = require('./src/routes/users');
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use('/api', users(db));
 
 app.listen(port, () => {
   console.log(
