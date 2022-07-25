@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../css/todoList.css';
 
-const TodoList = ({ todo, addTask }) => {
+const TodoList = ({ todo, addTask, deleteAllTask }) => {
   const [task, setTask] = useState('');
 
   const tasks = todo.map((task, index) => {
@@ -52,7 +52,7 @@ const TodoList = ({ todo, addTask }) => {
 
       <section>
         {tasks}
-        <button>Delete All</button>
+        <button onClick={() => deleteAllTask()}>Delete All</button>
       </section>
     </div>
   );

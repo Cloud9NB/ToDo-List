@@ -34,5 +34,20 @@ module.exports = db => {
       .catch(error => console.log('Error~~~', error));
   });
 
+  router.delete('/deleteTask/:userId', (req, res) => {
+    db.query(
+      `
+      DELETE FROM todolists
+      WHERE user_id = $1;
+      `,
+      [req.params.userId]
+    )
+      .then(data => {
+        const tasks = data.rows;
+        res.json(tasks);
+      })
+      .catch(error => console.log('Error~~~', error));
+  });
+
   return router;
 };

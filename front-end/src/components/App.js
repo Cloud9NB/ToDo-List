@@ -5,7 +5,8 @@ import useVisualMode from '../hooks/useVisualMode';
 import useApplicationData from '../hooks/hook';
 
 const App = () => {
-  const { state, signupUser, loginUser, addTask } = useApplicationData();
+  const { state, signupUser, loginUser, addTask, deleteAllTask } =
+    useApplicationData();
 
   const LOGIN = 'LOGIN';
   const SIGNUP = 'SIGNUP';
@@ -23,7 +24,13 @@ const App = () => {
       {mode === LOGIN && (
         <Login loginUser={loginUser} transition={transition} />
       )}
-      {mode === SHOW && <TodoList todo={state.todo} addTask={addTask} />}
+      {mode === SHOW && (
+        <TodoList
+          todo={state.todo}
+          addTask={addTask}
+          deleteAllTask={deleteAllTask}
+        />
+      )}
     </div>
   );
 };
