@@ -3,7 +3,6 @@ const router = express.Router();
 
 module.exports = db => {
   router.get('/:user/tasks', (req, res) => {
-    console.log(req.params);
     db.query(
       `
       SELECT todo
