@@ -1,9 +1,9 @@
 import '../css/todoList.css';
 
 const TodoList = ({ todo }) => {
-  const tasks = todo.map(task => {
+  const tasks = todo.map((task, index) => {
     return (
-      <section>
+      <section key={index}>
         <input type='checkbox' />
         {task.todo}
         <button>Edit</button>
