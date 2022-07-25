@@ -20,9 +20,10 @@ module.exports = db => {
       `
     SELECT *
     FROM users
-    WHERE username = $1;
+    WHERE username = $1
+    AND password = $2;
     `,
-      [req.body.username]
+      [req.body.username, req.body.password]
     )
       .then(data => {
         const users = data.rows;

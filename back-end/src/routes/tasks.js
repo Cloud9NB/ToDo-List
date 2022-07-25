@@ -19,5 +19,20 @@ module.exports = db => {
       .catch(error => console.log('Error~~~', error));
   });
 
+  router.post('/addTask/:task', (req, res) => {
+    db.query(
+      `
+      INSERT INTO todolists (todo)
+      VALUES ($1);
+      `,
+      [req.params.task]
+    )
+      .then(data => {
+        const task = data.rows;
+        res.json(task);
+      })
+      .catch(error => console.log('Error~~~', error));
+  });
+
   return router;
 };
