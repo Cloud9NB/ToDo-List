@@ -5,7 +5,7 @@ module.exports = db => {
   router.get('/:username/tasks', (req, res) => {
     db.query(
       `
-      SELECT user_id, username, todo
+      SELECT todolists.id, todo, user_id
       FROM todolists
       JOIN users ON user_id = users.id
       WHERE username = $1;
@@ -22,7 +22,7 @@ module.exports = db => {
   router.post('/addTask/', (req, res) => {
     db.query(
       `
-      INSERT INTO todolists (user_id,todo)
+      INSERT INTO todolists (user_id, todo)
       VALUES ($1, $2);
       `,
       [req.body.id, req.body.todo]
