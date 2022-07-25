@@ -4,10 +4,9 @@ import axios from 'axios';
 const useApplicationData = () => {
   const [state, setState] = useState({
     user: '',
-    todo: '',
+    todo: [],
   });
-  console.log(state.user);
-  console.log(state.todo);
+
   const signupUser = (username, password) => {
     const newUser = {
       username,

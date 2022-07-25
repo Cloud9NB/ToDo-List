@@ -1,14 +1,16 @@
 import '../css/todoList.css';
 
-const TodoList = () => {
-  const tasks = (
-    <section>
-      <input type='checkbox' />
-      Task placeholder
-      <button>Edit</button>
-      <button>Delete</button>
-    </section>
-  );
+const TodoList = ({ todo }) => {
+  const tasks = todo.map(task => {
+    return (
+      <section>
+        <input type='checkbox' />
+        {task.todo}
+        <button>Edit</button>
+        <button>Delete</button>
+      </section>
+    );
+  });
 
   return (
     <div>

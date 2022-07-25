@@ -21,7 +21,7 @@ const App = () => {
       {mode === LOGIN && (
         <Login loginUser={loginUser} transition={transition} />
       )}
-      {mode === SHOW && <TodoList />}
+      {mode === SHOW && <TodoList todo={state.todo} />}
     </div>
   );
 };
