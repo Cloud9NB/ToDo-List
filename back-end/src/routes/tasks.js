@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = db => {
-  router.get('/:user/tasks', (req, res) => {
+  router.get('/:username/tasks', (req, res) => {
     db.query(
       `
-      SELECT todo
+      SELECT user_id, username, todo
       FROM todolists
       JOIN users ON user_id = users.id
       WHERE username = $1;
       `,
-      [req.params.user]
+      [req.params.username]
     )
       .then(data => {
         const tasks = data.rows;
@@ -19,13 +19,13 @@ module.exports = db => {
       .catch(error => console.log('Error~~~', error));
   });
 
-  router.post('/addTask/:task', (req, res) => {
+  router.post('/addTask/', (req, res) => {
     db.query(
       `
-      INSERT INTO todolists (todo)
-      VALUES ($1);
+      INSERT INTO todolists (user_id,todo)
+      VALUES ($1, $2);
       `,
-      [req.params.task]
+      [req.body.id, req.body.todo]
     )
       .then(data => {
         const task = data.rows;

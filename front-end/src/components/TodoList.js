@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import '../css/todoList.css';
 
-const TodoList = ({ todo }) => {
+const TodoList = ({ todo, addTask }) => {
+  const [task, setTask] = useState('');
+
   const tasks = todo.map((task, index) => {
     return (
       <section key={index}>
@@ -12,6 +15,11 @@ const TodoList = ({ todo }) => {
     );
   });
 
+  const addNewTask = newTask => {
+    addTask(newTask);
+    setTask('');
+  };
+
   return (
     <div>
       <section>
@@ -19,11 +27,14 @@ const TodoList = ({ todo }) => {
         <input
           className='task'
           type='text'
-          value=''
+          value={task}
           placeholder='Enter your new task'
-          onChange={event => {}}
+          onChange={event => {
+            event.preventDefault();
+            setTask(event.target.value);
+          }}
         />
-        <button>Add</button>
+        <button onClick={() => addNewTask(task)}>Add</button>
       </section>
 
       <section>
