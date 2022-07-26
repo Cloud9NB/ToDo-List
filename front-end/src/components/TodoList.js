@@ -2,9 +2,19 @@ import { useState } from 'react';
 import '../css/todoList.css';
 
 const TodoList = ({ todo, addTask, deleteAllTask }) => {
-  const [task, setTask] = useState('');
+  const [state, setState] = useState({
+    newTask: '',
+    searchTask: '',
+    searchValue: '',
+  });
 
-  const tasks = todo.map((task, index) => {
+  const findTask = search =>
+    todo.filter(
+      task =>
+        search === '' || task.todo.toLowerCase().includes(search.toLowerCase())
+    );
+
+  const tasks = findTask(state.searchValue).map((task, index) => {
     return (
       <section key={index}>
         <input type='checkbox' />
@@ -17,7 +27,7 @@ const TodoList = ({ todo, addTask, deleteAllTask }) => {
 
   const addNewTask = newTask => {
     addTask(newTask);
-    setTask('');
+    setState({ ...state, newTask: '' });
   };
 
   return (
@@ -27,14 +37,14 @@ const TodoList = ({ todo, addTask, deleteAllTask }) => {
         <input
           className='task'
           type='text'
-          value={task}
+          value={state.newTask}
           placeholder='Enter your new task'
           onChange={event => {
             event.preventDefault();
-            setTask(event.target.value);
+            setState({ ...state, newTask: event.target.value });
           }}
         />
-        <button onClick={() => addNewTask(task)}>Add</button>
+        <button onClick={() => addNewTask(state.newTask)}>Add</button>
       </section>
 
       <section>
@@ -42,11 +52,24 @@ const TodoList = ({ todo, addTask, deleteAllTask }) => {
         <input
           className='task'
           type='text'
-          value=''
+          value={state.searchTask}
           placeholder='Search for your tasks'
-          onChange={event => {}}
+          onChange={event => {
+            event.preventDefault();
+            setState({ ...state, searchTask: event.target.value });
+          }}
         />
-        <button>Find</button>
+        <button
+          onClick={() =>
+            setState(prev => ({
+              ...prev,
+              searchValue: prev.searchTask,
+              searchTask: '',
+            }))
+          }
+        >
+          Find
+        </button>
         <button>Delete</button>
       </section>
 
