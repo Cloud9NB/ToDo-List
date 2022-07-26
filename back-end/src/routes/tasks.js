@@ -8,8 +8,7 @@ module.exports = db => {
       SELECT todolists.id, todo, user_id
       FROM todolists
       JOIN users ON user_id = users.id
-      WHERE username = $1
-      ORDER BY id DESC;
+      WHERE username = $1;
       `,
       [req.params.username]
     )
@@ -42,6 +41,22 @@ module.exports = db => {
       WHERE user_id = $1;
       `,
       [req.params.userId]
+    )
+      .then(data => {
+        const tasks = data.rows;
+        res.json(tasks);
+      })
+      .catch(error => console.log('Error~~~', error));
+  });
+
+  router.delete('/deleteTask/:userId', (req, res) => {
+    db.query(
+      `
+      DELETE FROM todolists
+      WHERE user_id = $1
+      AND todo = $2;
+      `,
+      [req.params.userId, req.body.todo]
     )
       .then(data => {
         const tasks = data.rows;

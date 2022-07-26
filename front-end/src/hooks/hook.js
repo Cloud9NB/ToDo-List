@@ -7,7 +7,7 @@ const useApplicationData = () => {
     todo: [],
     user: [],
   });
-
+  // console.log('todo', state.todo);
   const signupUser = (username, password) => {
     const newUser = {
       username,
@@ -34,10 +34,10 @@ const useApplicationData = () => {
 
   const addTask = newTask => {
     const updatedTasks = [
+      ...state.todo,
       {
         todo: newTask,
       },
-      ...state.todo,
     ];
 
     const task = {
@@ -63,6 +63,26 @@ const useApplicationData = () => {
     );
   };
 
+  const deleteTask = index => {
+    const deletedTask = state.todo.splice(index, 1);
+
+    const updatedTasks = state.todo
+      .filter(item => !Array.isArray(item))
+      .map(item =>
+        state.todo.length[index + 1] ? state.todo.splice(index, 1) : item
+      );
+
+    return axios
+      .delete(`http://localhost:8001/api/deleteTask/${state.user[0].id}`, {
+        data: { todo: deletedTask[0].todo },
+      })
+      .then(() =>
+        setState(prev => {
+          return { ...prev, todo: updatedTasks };
+        })
+      );
+  };
+
   useEffect(() => {
     if (state.username === '') return;
 
@@ -83,6 +103,7 @@ const useApplicationData = () => {
     loginUser,
     addTask,
     deleteAllTask,
+    deleteTask,
   };
 };
 

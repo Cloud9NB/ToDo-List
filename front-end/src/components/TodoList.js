@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../css/todoList.css';
 
-const TodoList = ({ todo, addTask, deleteAllTask }) => {
+const TodoList = ({ todo, addTask, deleteAllTask, deleteTask }) => {
   const [state, setState] = useState({
     newTask: '',
     searchTask: '',
@@ -20,10 +20,21 @@ const TodoList = ({ todo, addTask, deleteAllTask }) => {
         <input type='checkbox' />
         {task.todo}
         <button>Edit</button>
-        <button>Delete</button>
+        <button
+          onClick={event => {
+            event.preventDefault();
+            deleteSingleTask(index);
+          }}
+        >
+          Delete
+        </button>
       </section>
     );
   });
+
+  const deleteSingleTask = index => {
+    deleteTask(index);
+  };
 
   const addNewTask = newTask => {
     addTask(newTask);
