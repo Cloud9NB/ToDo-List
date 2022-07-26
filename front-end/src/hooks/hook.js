@@ -7,7 +7,7 @@ const useApplicationData = () => {
     todo: [],
     user: [],
   });
-  console.log(state.todo);
+
   const signupUser = (username, password) => {
     const newUser = {
       username,
@@ -64,6 +64,8 @@ const useApplicationData = () => {
   };
 
   useEffect(() => {
+    if (state.username === '') return;
+
     const apiTodo = `http://localhost:8001/api/${state.username}/tasks`;
     const apiUser = `http://localhost:8001/api/user/${state.username}`;
     Promise.all([axios.get(apiTodo), axios.get(apiUser)]).then(all => {
