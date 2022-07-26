@@ -59,7 +59,7 @@ const useApplicationData = () => {
   const deleteAllTask = () => {
     setState({ ...state, todo: [] });
     return axios.delete(
-      `http://localhost:8001/api/deleteTask/${state.user[0].id}/`
+      `http://localhost:8001/api/deleteAllTask/${state.user[0].id}/`
     );
   };
 

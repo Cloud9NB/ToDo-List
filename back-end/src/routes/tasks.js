@@ -34,7 +34,7 @@ module.exports = db => {
       .catch(error => console.log('Error~~~', error));
   });
 
-  router.delete('/deleteTask/:userId', (req, res) => {
+  router.delete('/deleteAllTask/:userId', (req, res) => {
     db.query(
       `
       DELETE FROM todolists
