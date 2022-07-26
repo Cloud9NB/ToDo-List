@@ -8,7 +8,8 @@ module.exports = db => {
       SELECT todolists.id, todo, user_id
       FROM todolists
       JOIN users ON user_id = users.id
-      WHERE username = $1;
+      WHERE username = $1
+      ORDER BY id DESC;
       `,
       [req.params.username]
     )
