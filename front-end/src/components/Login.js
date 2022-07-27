@@ -73,7 +73,7 @@ const Login = ({ loginUser, transition }) => {
                       <a
                         href='#!'
                         className='text-body fw-bold'
-                        onclick={transition('SIGNUP')}
+                        onClick={() => transition('SIGNUP')}
                       >
                         Sign Up
                       </a>
