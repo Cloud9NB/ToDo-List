@@ -1,16 +1,22 @@
 import { useState } from 'react';
 import EditTaskForm from './EditTask';
+const classNames = require('classnames');
 
 const TodoList = ({ index, todo, deleteTask, updateTask }) => {
-  const [check, setCheck] = useState(false);
-
+  const [state, setState] = useState({
+    check: false,
+    editClick: false,
+  });
   const deleteSingleTask = index => {
     deleteTask(index);
   };
 
-  const classNames = require('classnames');
   const strikeThrough = classNames('ms-3', {
-    'text-decoration-line-through': check,
+    'text-decoration-line-through': state.check,
+  });
+
+  const modal = classNames('row gy-2 gx-3 align-items-center', {
+    'd-none': !state.editClick,
   });
 
   return (
@@ -22,7 +28,9 @@ const TodoList = ({ index, todo, deleteTask, updateTask }) => {
               className='form-check-input'
               type='checkbox'
               value=''
-              onClick={() => setCheck(!check)}
+              onClick={() =>
+                setState(prev => ({ ...prev, check: !state.check }))
+              }
             />
           </div>
         </th>
@@ -42,15 +50,21 @@ const TodoList = ({ index, todo, deleteTask, updateTask }) => {
             data-mdb-ripple-color='dark'
             onClick={event => {
               event.preventDefault();
-              // i want this clicked to show the editTaskForm component
+              setState(prev => ({ ...prev, editClick: !state.editClick }));
             }}
           >
             Edit
           </button>
         </td>
 
-        {/* I want this component to overlap the component with background grayed out */}
-        <EditTaskForm index={index} todo={todo} updateTask={updateTask} />
+        <EditTaskForm
+          index={index}
+          todo={todo}
+          updateTask={updateTask}
+          modal={modal}
+          setState={setState}
+          editClick={state.editClick}
+        />
 
         <td>
           <button
