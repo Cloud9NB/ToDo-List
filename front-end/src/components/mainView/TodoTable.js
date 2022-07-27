@@ -1,7 +1,16 @@
+import { useState } from 'react';
+
 const TodoTable = ({ index, todo, deleteTask }) => {
+  const [check, setCheck] = useState(false);
+
   const deleteSingleTask = index => {
     deleteTask(index);
   };
+
+  const classNames = require('classnames');
+  const strikeThrough = classNames('ms-3', {
+    'text-decoration-line-through': check,
+  });
 
   return (
     <tbody>
@@ -12,7 +21,7 @@ const TodoTable = ({ index, todo, deleteTask }) => {
               className='form-check-input'
               type='checkbox'
               value=''
-              id='flexCheckDefault'
+              onClick={() => setCheck(!check)}
             />
           </div>
         </th>
@@ -20,7 +29,7 @@ const TodoTable = ({ index, todo, deleteTask }) => {
         <td>
           <div className='d-flex align-items-center'>
             <div className='ms-3'>
-              <p className='fw-bold mb-1'>{todo}</p>
+              <p className={strikeThrough}>{todo}</p>
             </div>
           </div>
         </td>

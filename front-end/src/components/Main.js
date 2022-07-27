@@ -27,15 +27,15 @@ const TodoList = ({ todo, addTask, deleteAllTask, deleteTask }) => {
 
   return (
     <div>
-      <br></br>
+      <br />
       <AddTask addTask={addTask} />
-      <br></br>
+      <br />
       <SearchTask
         deleteAllTask={deleteAllTask}
         searchTask={state.searchTask}
         setState={setState}
       />
-      <br></br>
+      <br />
 
       <section>
         <table className='table align-middle mb-0 bg-white table-hover'>
