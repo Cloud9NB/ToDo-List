@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import '../css/todoList.css';
 import AddTask from './mainView/AddTask';
+import SearchTask from './mainView/SearchTask';
 
 const TodoList = ({ todo, addTask, deleteAllTask, deleteTask }) => {
   const [state, setState] = useState({
-    newTask: '',
     searchTask: '',
     searchValue: '',
   });
@@ -67,62 +67,16 @@ const TodoList = ({ todo, addTask, deleteAllTask, deleteTask }) => {
     deleteTask(index);
   };
 
-  // const addNewTask = newTask => {
-  //   addTask(newTask);
-  //   setState({ ...state, newTask: '' });
-  // };
-
   return (
     <div>
       <br></br>
       <AddTask addTask={addTask} />
       <br></br>
-
-      <section className='row gy-2 gx-3 align-items-center'>
-        <div className='col-auto'>
-          <div className='form-outline'>
-            <input
-              type='text'
-              id='form11Example3'
-              className='form-control'
-              value={state.searchTask}
-              placeholder='Search for your tasks'
-              onChange={event => {
-                event.preventDefault();
-                setState({ ...state, searchTask: event.target.value });
-              }}
-            />
-            <label className='form-label' htmlFor='form11Example3'>
-              Search
-            </label>
-          </div>
-        </div>
-        <div className='col-auto'>
-          <button
-            type='submit'
-            className='btn btn-primary'
-            onClick={() =>
-              setState(prev => ({
-                ...prev,
-                searchValue: prev.searchTask,
-                searchTask: '',
-              }))
-            }
-          >
-            Find
-          </button>
-        </div>
-        <div>
-          <button
-            type='submit'
-            className='btn btn-danger'
-            onClick={() => deleteAllTask()}
-          >
-            Delete All
-          </button>
-        </div>
-      </section>
-
+      <SearchTask
+        deleteAllTask={deleteAllTask}
+        searchTask={state.searchTask}
+        setState={setState}
+      />
       <br></br>
 
       <section>
