@@ -5,7 +5,7 @@ import SearchTask from './SearchTask';
 import TodoList from './TodoList';
 import TodoTable from './TodoTable';
 
-const Main = ({ todo, addTask, deleteAllTask, deleteTask }) => {
+const Main = ({ todo, addTask, deleteAllTask, deleteTask, updateTask }) => {
   const [state, setState] = useState({
     searchTask: '',
     searchValue: '',
@@ -42,6 +42,7 @@ const Main = ({ todo, addTask, deleteAllTask, deleteTask }) => {
         todo={todo}
         deleteTask={deleteTask}
         searchValue={state.searchValue}
+        updateTask={updateTask}
       />
     </div>
   );

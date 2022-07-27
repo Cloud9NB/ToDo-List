@@ -1,6 +1,6 @@
 import TodoList from './TodoList';
 
-const TodoTable = ({ todo, deleteTask, searchValue }) => {
+const TodoTable = ({ todo, deleteTask, searchValue, updateTask }) => {
   const findTask = search =>
     todo.filter(
       task =>
@@ -13,6 +13,7 @@ const TodoTable = ({ todo, deleteTask, searchValue }) => {
       key={index}
       todo={task.todo}
       deleteTask={deleteTask}
+      updateTask={updateTask}
     />
   ));
 

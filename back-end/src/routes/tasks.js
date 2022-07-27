@@ -68,7 +68,7 @@ module.exports = db => {
   router.put('/updateTask/:userId', (req, res) => {
     db.query(
       `
-      UPDATE FROM todolists
+      UPDATE todolists
       SET todo = $1
       WHERE user_id = $2
       AND todo = $3;

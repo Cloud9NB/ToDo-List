@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import EditTaskForm from './EditTask';
 
-const TodoList = ({ index, todo, deleteTask }) => {
+const TodoList = ({ index, todo, deleteTask, updateTask }) => {
   const [check, setCheck] = useState(false);
 
   const deleteSingleTask = index => {
@@ -39,10 +40,17 @@ const TodoList = ({ index, todo, deleteTask }) => {
             type='button'
             className='btn btn-link btn-rounded btn-sm fw-bold'
             data-mdb-ripple-color='dark'
+            onClick={event => {
+              event.preventDefault();
+              // i want this clicked to show the editTaskForm component
+            }}
           >
             Edit
           </button>
         </td>
+
+        {/* I want this component to overlap the component with background grayed out */}
+        <EditTaskForm index={index} todo={todo} updateTask={updateTask} />
 
         <td>
           <button

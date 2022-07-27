@@ -83,6 +83,18 @@ const useApplicationData = () => {
       );
   };
 
+  const updateTask = (index, oldTask, newTask) => {
+    const data = {
+      updatedTask: newTask,
+      oldTask,
+    };
+
+    return axios.put(
+      `http://localhost:8001/api/updateTask/${state.user[0].id}`,
+      data
+    );
+  };
+
   useEffect(() => {
     if (state.username === '') return;
 
@@ -104,6 +116,7 @@ const useApplicationData = () => {
     addTask,
     deleteAllTask,
     deleteTask,
+    updateTask,
   };
 };
 
