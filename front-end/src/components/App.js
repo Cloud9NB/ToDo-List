@@ -1,6 +1,6 @@
 import Signup from './Signup';
 import Login from './Login';
-import TodoList from './TodoList';
+import Main from './Main';
 import useVisualMode from '../hooks/useVisualMode';
 import useApplicationData from '../hooks/hook';
 
@@ -25,7 +25,7 @@ const App = () => {
         <Login loginUser={loginUser} transition={transition} />
       )}
       {mode === SHOW && (
-        <TodoList
+        <Main
           todo={state.todo}
           addTask={addTask}
           deleteAllTask={deleteAllTask}
