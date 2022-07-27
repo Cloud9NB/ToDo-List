@@ -1,22 +1,19 @@
 import { useState } from 'react';
 import EditTaskForm from './EditTask';
-const classNames = require('classnames');
 
 const TodoList = ({ index, todo, deleteTask, updateTask }) => {
   const [state, setState] = useState({
     check: false,
     editClick: false,
   });
+
   const deleteSingleTask = index => {
     deleteTask(index);
   };
 
+  const classNames = require('classnames');
   const strikeThrough = classNames('ms-3', {
     'text-decoration-line-through': state.check,
-  });
-
-  const modal = classNames('row gy-2 gx-3 align-items-center', {
-    'd-none': !state.editClick,
   });
 
   return (
@@ -57,15 +54,6 @@ const TodoList = ({ index, todo, deleteTask, updateTask }) => {
           </button>
         </td>
 
-        <EditTaskForm
-          index={index}
-          todo={todo}
-          updateTask={updateTask}
-          modal={modal}
-          setState={setState}
-          editClick={state.editClick}
-        />
-
         <td>
           <button
             type='button'
@@ -80,6 +68,13 @@ const TodoList = ({ index, todo, deleteTask, updateTask }) => {
           </button>
         </td>
       </tr>
+      <EditTaskForm
+        index={index}
+        todo={todo}
+        updateTask={updateTask}
+        setState={setState}
+        editClick={state.editClick}
+      />
     </tbody>
   );
 };

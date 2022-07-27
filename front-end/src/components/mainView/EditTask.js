@@ -1,23 +1,20 @@
 import { useState } from 'react';
 import '../../css/editTask.css';
 
-const EditTaskForm = ({
-  index,
-  todo,
-  updateTask,
-  modal,
-  setState,
-  editClick,
-}) => {
+const EditTaskForm = ({ index, todo, updateTask, setState, editClick }) => {
   const [updatedTask, setUpdatedTask] = useState('');
 
   const updatesTask = (index, oldTask, newTask) => {
     updateTask(index, oldTask, newTask);
   };
 
+  const classNames = require('classnames');
+  const modal = classNames('row gy-2 gx-3 align-items-center', {
+    'd-none': !editClick,
+  });
+
   return (
     <section className={modal} id='modal'>
-      <span class='close'>&times;</span>
       <div id='modal-content'>
         <div className='col-auto'>
           <div className='form-outline'>

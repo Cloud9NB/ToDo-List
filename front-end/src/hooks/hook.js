@@ -7,7 +7,7 @@ const useApplicationData = () => {
     todo: [],
     user: [],
   });
-  console.log('todo', state.todo);
+
   const signupUser = (username, password) => {
     const newUser = {
       username,
