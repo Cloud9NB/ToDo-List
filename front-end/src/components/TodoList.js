@@ -16,19 +16,49 @@ const TodoList = ({ todo, addTask, deleteAllTask, deleteTask }) => {
 
   const tasks = findTask(state.searchValue).map((task, index) => {
     return (
-      <section key={index}>
-        <input type='checkbox' />
-        {task.todo}
-        <button>Edit</button>
-        <button
-          onClick={event => {
-            event.preventDefault();
-            deleteSingleTask(index);
-          }}
-        >
-          Delete
-        </button>
-      </section>
+      <tbody key={index}>
+        <tr>
+          <th scope='row'>
+            <div className='form-check'>
+              <input
+                className='form-check-input'
+                type='checkbox'
+                value=''
+                id='flexCheckDefault'
+              />
+            </div>
+          </th>
+          <td>
+            <div className='d-flex align-items-center'>
+              <div className='ms-3'>
+                <p className='fw-bold mb-1'>{task.todo}</p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <button
+              type='button'
+              className='btn btn-link btn-rounded btn-sm fw-bold'
+              data-mdb-ripple-color='dark'
+            >
+              Edit
+            </button>
+          </td>
+          <td>
+            <button
+              type='button'
+              className='btn btn-link btn-rounded btn-sm fw-bold'
+              id='delete-button'
+              onClick={event => {
+                event.preventDefault();
+                deleteSingleTask(index);
+              }}
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
     );
   });
 
@@ -43,50 +73,108 @@ const TodoList = ({ todo, addTask, deleteAllTask, deleteTask }) => {
 
   return (
     <div>
-      <section>
-        <label>Task: </label>
-        <input
-          className='task'
-          type='text'
-          value={state.newTask}
-          placeholder='Enter your new task'
-          onChange={event => {
-            event.preventDefault();
-            setState({ ...state, newTask: event.target.value });
-          }}
-        />
-        <button onClick={() => addNewTask(state.newTask)}>Add</button>
+      <br></br>
+      <section className='row gy-2 gx-3 align-items-center'>
+        <div className='col-auto'>
+          <div className='form-outline'>
+            <input
+              type='text'
+              id='form11Example3'
+              className='form-control'
+              value={state.newTask}
+              placeholder='Enter your new task'
+              onChange={event => {
+                event.preventDefault();
+                setState({ ...state, newTask: event.target.value });
+              }}
+            />
+            <label className='form-label' htmlFor='form11Example3'>
+              New Task
+            </label>
+          </div>
+        </div>
+        <div className='col-auto'>
+          <button
+            type='submit'
+            className='btn btn-primary'
+            onClick={() => addNewTask(state.newTask)}
+          >
+            Add
+          </button>
+        </div>
       </section>
 
-      <section>
-        <label>Search: </label>
-        <input
-          className='task'
-          type='text'
-          value={state.searchTask}
-          placeholder='Search for your tasks'
-          onChange={event => {
-            event.preventDefault();
-            setState({ ...state, searchTask: event.target.value });
-          }}
-        />
-        <button
-          onClick={() =>
-            setState(prev => ({
-              ...prev,
-              searchValue: prev.searchTask,
-              searchTask: '',
-            }))
-          }
-        >
-          Find
-        </button>
-        <button>Delete</button>
+      <br></br>
+
+      <section className='row gy-2 gx-3 align-items-center'>
+        <div className='col-auto'>
+          <div className='form-outline'>
+            <input
+              type='text'
+              id='form11Example3'
+              className='form-control'
+              value={state.searchTask}
+              placeholder='Search for your tasks'
+              onChange={event => {
+                event.preventDefault();
+                setState({ ...state, searchTask: event.target.value });
+              }}
+            />
+            <label className='form-label' htmlFor='form11Example3'>
+              Search
+            </label>
+          </div>
+        </div>
+        <div className='col-auto'>
+          <button
+            type='submit'
+            className='btn btn-primary'
+            onClick={() =>
+              setState(prev => ({
+                ...prev,
+                searchValue: prev.searchTask,
+                searchTask: '',
+              }))
+            }
+          >
+            Find
+          </button>
+        </div>
+        <div>
+          <button
+            type='submit'
+            className='btn btn-danger'
+            onClick={() => deleteAllTask()}
+          >
+            Delete All
+          </button>
+        </div>
       </section>
 
+      <br></br>
+
       <section>
-        {tasks}
-        <button onClick={() => deleteAllTask()}>Delete All</button>
+        <table className='table align-middle mb-0 bg-white table-hover'>
+          <thead className='bg-light'>
+            <tr>
+              <th scope='col'>
+                <div className='form-check'>
+                  <input
+                    className='form-check-input'
+                    type='checkbox'
+                    value=''
+                    id='flexCheckDefault'
+                    disabled
+                  />
+                </div>
+              </th>
+              <th>ToDo</th>
+              <th>Action</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          {tasks}
+        </table>
       </section>
     </div>
   );

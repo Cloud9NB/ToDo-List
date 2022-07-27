@@ -1,4 +1,5 @@
-.task {
-  border: none;
-  border-bottom: 1px solid;
+@import '~mdb-ui-kit/css/mdb.min.css';
+
+#delete-button {
+  color: #f93154;
 }
