@@ -65,5 +65,22 @@ module.exports = db => {
       .catch(error => console.log('Error~~~', error));
   });
 
+  router.put('/updateTask/:userId', (req, res) => {
+    db.query(
+      `
+      UPDATE FROM todolists
+      SET todo = $1
+      WHERE user_id = $2
+      AND todo = $3;
+      `,
+      [req.body.updatedTask, req.params.userId, req.body.oldTask]
+    )
+      .then(data => {
+        const tasks = data.rows;
+        res.json(tasks);
+      })
+      .catch(error => console.log('Error~~~', error));
+  });
+
   return router;
 };
