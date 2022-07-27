@@ -21,13 +21,13 @@ const Login = ({ loginUser, transition }) => {
                 <div className='card-body p-5 text-center'>
                   <div className='my-md-5 pb-5'>
                     <h1 className='fw-bold mb-0'>Welcome</h1>
+                    <h5 className='fw-bold mb-0'>Please Login</h5>
 
                     <i className='fas fa-user-astronaut fa-3x my-5'></i>
 
                     <div className='form-outline mb-4'>
                       <input
                         type='text'
-                        id='typeEmail'
                         className='form-control form-control-lg'
                         value={state.username}
                         placeholder='Enter your username'
@@ -43,7 +43,6 @@ const Login = ({ loginUser, transition }) => {
                     <div className='form-outline mb-5'>
                       <input
                         type='password'
-                        id='typePassword'
                         className='form-control form-control-lg'
                         value={state.password}
                         placeholder='Enter your password'
@@ -71,7 +70,11 @@ const Login = ({ loginUser, transition }) => {
                   <div>
                     <p className='mb-0'>
                       Don't have an account?{' '}
-                      <a href='#!' className='text-body fw-bold'>
+                      <a
+                        href='#!'
+                        className='text-body fw-bold'
+                        onclick={transition('SIGNUP')}
+                      >
                         Sign Up
                       </a>
                     </p>
