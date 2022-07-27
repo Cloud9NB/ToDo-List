@@ -1,6 +1,6 @@
 import Signup from './Signup';
 import Login from './Login';
-import Main from './Main';
+import Main from './mainView/Main';
 import useVisualMode from '../hooks/useVisualMode';
 import useApplicationData from '../hooks/hook';
 
