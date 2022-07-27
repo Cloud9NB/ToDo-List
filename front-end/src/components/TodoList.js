@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../css/todoList.css';
+import AddTask from './mainView/AddTask';
 
 const TodoList = ({ todo, addTask, deleteAllTask, deleteTask }) => {
   const [state, setState] = useState({
@@ -66,44 +67,15 @@ const TodoList = ({ todo, addTask, deleteAllTask, deleteTask }) => {
     deleteTask(index);
   };
 
-  const addNewTask = newTask => {
-    addTask(newTask);
-    setState({ ...state, newTask: '' });
-  };
+  // const addNewTask = newTask => {
+  //   addTask(newTask);
+  //   setState({ ...state, newTask: '' });
+  // };
 
   return (
     <div>
       <br></br>
-      <section className='row gy-2 gx-3 align-items-center'>
-        <div className='col-auto'>
-          <div className='form-outline'>
-            <input
-              type='text'
-              id='form11Example3'
-              className='form-control'
-              value={state.newTask}
-              placeholder='Enter your new task'
-              onChange={event => {
-                event.preventDefault();
-                setState({ ...state, newTask: event.target.value });
-              }}
-            />
-            <label className='form-label' htmlFor='form11Example3'>
-              New Task
-            </label>
-          </div>
-        </div>
-        <div className='col-auto'>
-          <button
-            type='submit'
-            className='btn btn-primary'
-            onClick={() => addNewTask(state.newTask)}
-          >
-            Add
-          </button>
-        </div>
-      </section>
-
+      <AddTask addTask={addTask} />
       <br></br>
 
       <section className='row gy-2 gx-3 align-items-center'>
