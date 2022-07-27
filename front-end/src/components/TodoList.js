@@ -2,6 +2,7 @@ import { useState } from 'react';
 import '../css/todoList.css';
 import AddTask from './mainView/AddTask';
 import SearchTask from './mainView/SearchTask';
+import TodoTable from './mainView/TodoTable';
 
 const TodoList = ({ todo, addTask, deleteAllTask, deleteTask }) => {
   const [state, setState] = useState({
@@ -15,57 +16,14 @@ const TodoList = ({ todo, addTask, deleteAllTask, deleteTask }) => {
         search === '' || task.todo.toLowerCase().includes(search.toLowerCase())
     );
 
-  const tasks = findTask(state.searchValue).map((task, index) => {
-    return (
-      <tbody key={index}>
-        <tr>
-          <th scope='row'>
-            <div className='form-check'>
-              <input
-                className='form-check-input'
-                type='checkbox'
-                value=''
-                id='flexCheckDefault'
-              />
-            </div>
-          </th>
-          <td>
-            <div className='d-flex align-items-center'>
-              <div className='ms-3'>
-                <p className='fw-bold mb-1'>{task.todo}</p>
-              </div>
-            </div>
-          </td>
-          <td>
-            <button
-              type='button'
-              className='btn btn-link btn-rounded btn-sm fw-bold'
-              data-mdb-ripple-color='dark'
-            >
-              Edit
-            </button>
-          </td>
-          <td>
-            <button
-              type='button'
-              className='btn btn-link btn-rounded btn-sm fw-bold'
-              id='delete-button'
-              onClick={event => {
-                event.preventDefault();
-                deleteSingleTask(index);
-              }}
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    );
-  });
-
-  const deleteSingleTask = index => {
-    deleteTask(index);
-  };
+  const tasks = findTask(state.searchValue).map((task, index) => (
+    <TodoTable
+      index={index}
+      key={index}
+      todo={task.todo}
+      deleteTask={deleteTask}
+    />
+  ));
 
   return (
     <div>
