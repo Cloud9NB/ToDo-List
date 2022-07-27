@@ -16,6 +16,7 @@ const TodoTable = ({ index, todo, deleteTask }) => {
             />
           </div>
         </th>
+
         <td>
           <div className='d-flex align-items-center'>
             <div className='ms-3'>
@@ -23,6 +24,7 @@ const TodoTable = ({ index, todo, deleteTask }) => {
             </div>
           </div>
         </td>
+
         <td>
           <button
             type='button'
@@ -32,6 +34,7 @@ const TodoTable = ({ index, todo, deleteTask }) => {
             Edit
           </button>
         </td>
+
         <td>
           <button
             type='button'

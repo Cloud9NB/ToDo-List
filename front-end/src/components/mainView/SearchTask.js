@@ -19,6 +19,7 @@ const SearchTask = ({ deleteAllTask, searchTask, setState }) => {
           </label>
         </div>
       </div>
+
       <div className='col-auto'>
         <button
           type='submit'
@@ -34,6 +35,7 @@ const SearchTask = ({ deleteAllTask, searchTask, setState }) => {
           Find
         </button>
       </div>
+
       <div>
         <button
           type='submit'
