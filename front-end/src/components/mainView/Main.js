@@ -3,6 +3,7 @@ import '../../css/todoList.css';
 import AddTask from './AddTask';
 import SearchTask from './SearchTask';
 import TodoList from './TodoList';
+import TodoTable from './TodoTable';
 
 const Main = ({ todo, addTask, deleteAllTask, deleteTask }) => {
   const [state, setState] = useState({
@@ -36,30 +37,12 @@ const Main = ({ todo, addTask, deleteAllTask, deleteTask }) => {
         setState={setState}
       />
       <br />
-
-      <section>
-        <table className='table align-middle mb-0 bg-white table-hover'>
-          <thead className='bg-light'>
-            <tr>
-              <th scope='col'>
-                <div className='form-check'>
-                  <input
-                    className='form-check-input'
-                    type='checkbox'
-                    value=''
-                    id='flexCheckDefault'
-                    disabled
-                  />
-                </div>
-              </th>
-              <th>ToDo</th>
-              <th>Action</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          {tasks}
-        </table>
-      </section>
+      <TodoTable
+        tasks={tasks}
+        todo={todo}
+        deleteTask={deleteTask}
+        searchValue={state.searchValue}
+      />
     </div>
   );
 };

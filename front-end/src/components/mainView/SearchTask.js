@@ -5,7 +5,6 @@ const SearchTask = ({ deleteAllTask, searchTask, setState }) => {
         <div className='form-outline'>
           <input
             type='text'
-            id='form11Example3'
             className='form-control'
             value={searchTask}
             placeholder='Search for your tasks'

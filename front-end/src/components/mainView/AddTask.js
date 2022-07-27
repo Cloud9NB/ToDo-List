@@ -13,7 +13,6 @@ const AddTask = ({ addTask }) => {
         <div className='form-outline'>
           <input
             type='text'
-            id='form11Example3'
             className='form-control'
             value={newTask}
             placeholder='Enter your new task'
