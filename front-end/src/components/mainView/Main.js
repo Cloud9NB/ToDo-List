@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import '../css/todoList.css';
-import AddTask from './mainView/AddTask';
-import SearchTask from './mainView/SearchTask';
-import TodoTable from './mainView/TodoTable';
+import AddTask from './AddTask';
+import SearchTask from './SearchTask';
+import TodoTable from './TodoTable';
 
 const TodoList = ({ todo, addTask, deleteAllTask, deleteTask }) => {
   const [state, setState] = useState({
