@@ -7,7 +7,7 @@ const useApplicationData = () => {
     todo: [],
     user: [],
   });
-  // console.log('todo', state.todo);
+  console.log('todo', state.todo);
   const signupUser = (username, password) => {
     const newUser = {
       username,
@@ -89,10 +89,11 @@ const useApplicationData = () => {
       oldTask,
     };
 
-    return axios.put(
-      `http://localhost:8001/api/updateTask/${state.user[0].id}`,
-      data
-    );
+    state.todo[index].todo = newTask;
+
+    return axios
+      .put(`http://localhost:8001/api/updateTask/${state.user[0].id}`, data)
+      .then(() => setState(prev => ({ ...prev, todo: state.todo })));
   };
 
   useEffect(() => {
