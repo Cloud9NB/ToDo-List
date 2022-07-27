@@ -14,10 +14,10 @@ const EditTaskForm = ({ index, todo, updateTask, setState, editClick }) => {
   });
 
   return (
-    <section className={modal} id='modal'>
-      <div id='modal-content'>
+    <tr className={modal} id='modal'>
+      <th id='modal-content'>
         <div className='col-auto'>
-          <div className='form-outline'>
+          <div className='form-outline col-auto'>
             <input
               type='text'
               className='form-control'
@@ -48,8 +48,8 @@ const EditTaskForm = ({ index, todo, updateTask, setState, editClick }) => {
             Edit Task
           </button>
         </div>
-      </div>
-    </section>
+      </th>
+    </tr>
   );
 };
 
