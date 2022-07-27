@@ -2,9 +2,9 @@ import { useState } from 'react';
 import '../../css/todoList.css';
 import AddTask from './AddTask';
 import SearchTask from './SearchTask';
-import TodoTable from './TodoTable';
+import TodoList from './TodoList';
 
-const TodoList = ({ todo, addTask, deleteAllTask, deleteTask }) => {
+const Main = ({ todo, addTask, deleteAllTask, deleteTask }) => {
   const [state, setState] = useState({
     searchTask: '',
     searchValue: '',
@@ -17,7 +17,7 @@ const TodoList = ({ todo, addTask, deleteAllTask, deleteTask }) => {
     );
 
   const tasks = findTask(state.searchValue).map((task, index) => (
-    <TodoTable
+    <TodoList
       index={index}
       key={index}
       todo={task.todo}
@@ -64,4 +64,4 @@ const TodoList = ({ todo, addTask, deleteAllTask, deleteTask }) => {
   );
 };
 
-export default TodoList;
+export default Main;

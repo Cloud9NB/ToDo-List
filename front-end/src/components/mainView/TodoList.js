@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const TodoTable = ({ index, todo, deleteTask }) => {
+const TodoList = ({ index, todo, deleteTask }) => {
   const [check, setCheck] = useState(false);
 
   const deleteSingleTask = index => {
@@ -62,4 +62,4 @@ const TodoTable = ({ index, todo, deleteTask }) => {
   );
 };
 
-export default TodoTable;
+export default TodoList;
