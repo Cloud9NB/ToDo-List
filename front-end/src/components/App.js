@@ -19,9 +19,7 @@ const App = () => {
   const SIGNUP = 'SIGNUP';
   const SHOW = 'SHOW';
 
-  const { mode, transition, back } = useVisualMode(
-    state.username ? SHOW : SIGNUP
-  );
+  const { mode, transition } = useVisualMode(state.username ? SHOW : SIGNUP);
 
   return (
     <div>

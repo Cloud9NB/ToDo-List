@@ -13,18 +13,9 @@ const useVisualMode = initial => {
         });
   };
 
-  const back = () => {
-    if (history.length > 1) {
-      setHistory(prev => {
-        return [...prev.slice(0, -1)];
-      });
-    }
-  };
-
   return {
     mode: history[history.length - 1],
     transition,
-    back,
   };
 };
 
