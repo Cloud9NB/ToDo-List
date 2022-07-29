@@ -29,7 +29,7 @@ const App = () => {
 
         <Route exact path='/login' element={<Login loginUser={loginUser} />} />
 
-        <Route exact path='/' element={<Navigate replace to='signup' />} />
+        <Route exact path='/' element={<Navigate replace to='/signup' />} />
 
         <Route
           exact

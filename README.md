@@ -3,7 +3,7 @@
 A full stack Todo List app where users can keep track of their tasks and be able to delete them if completed.
 
 ![Registration](https://github.com/Cloud9NB/ToDo-List/blob/main/front-end/public/docs/screenshots/registration.png?raw=true)
-![Todo Form](https://github.com/Cloud9NB/ToDo-List/blob/main/front-end/public/docs/screenshots/todo-form.png?raw=true)
+![Todo Form]()
 ![Edit Form](https://github.com/Cloud9NB/ToDo-List/blob/main/front-end/public/docs/screenshots/edit-form.png?raw=true)
 
 ## Creating the DB
@@ -37,3 +37,4 @@ In the other terminal, `cd` into `back-end`. Run `npm install` then `npm start` 
 - `Express`: A minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications
 - `Nodemon`: A tool that helps Node.js applications to automatically restarts when file changes in the directory are detected
 - `PG`: Non-blocking PostgreSQL client for Node.js
+- `React-Router-Dom`: Enables you to implement dynamic routing in a web app
