@@ -96,6 +96,10 @@ const useApplicationData = () => {
       .then(() => setState(prev => ({ ...prev, todo: state.todo })));
   };
 
+  const logoutUser = () => {
+    setState(prev => ({ ...prev, username: '' }));
+  };
+
   useEffect(() => {
     if (state.username === '') return;
 
@@ -118,6 +122,7 @@ const useApplicationData = () => {
     deleteAllTask,
     deleteTask,
     updateTask,
+    logoutUser,
   };
 };
 

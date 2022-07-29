@@ -1,0 +1,7 @@
+.topNav {
+  padding-left: 2%;
+  padding-right: 2%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}

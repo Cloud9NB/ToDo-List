@@ -1,6 +1,7 @@
 import Signup from './Signup';
 import Login from './Login';
 import Main from './mainView/Main';
+import TopNav from './mainView/TopNav';
 import useApplicationData from '../hooks/hook';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
@@ -13,10 +14,12 @@ const App = () => {
     deleteAllTask,
     deleteTask,
     updateTask,
+    logoutUser,
   } = useApplicationData();
 
   return (
     <div>
+      <TopNav logoutUser={logoutUser} username={state.username} />
       <Routes>
         <Route
           exact
