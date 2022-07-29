@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import EditTaskForm from './EditTask';
+import { useContext } from 'react';
+import { AllContext } from '../App';
 
-const TodoList = ({ index, todo, deleteTask, updateTask }) => {
+const TodoList = ({ index, todo }) => {
+  const { deleteTask } = useContext(AllContext);
+
   const [state, setState] = useState({
     check: false,
     editClick: false,
@@ -71,7 +75,6 @@ const TodoList = ({ index, todo, deleteTask, updateTask }) => {
       <EditTaskForm
         index={index}
         todo={todo}
-        updateTask={updateTask}
         setState={setState}
         editClick={state.editClick}
       />

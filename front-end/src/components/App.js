@@ -4,6 +4,9 @@ import Main from './mainView/Main';
 import TopNav from './mainView/TopNav';
 import useApplicationData from '../hooks/hook';
 import { Route, Routes, Navigate } from 'react-router-dom';
+import { createContext } from 'react';
+
+export const AllContext = createContext(null);
 
 const App = () => {
   const {
@@ -18,34 +21,26 @@ const App = () => {
   } = useApplicationData();
 
   return (
-    <div>
-      <TopNav logoutUser={logoutUser} username={state.username} />
+    <AllContext.Provider
+      value={{
+        logoutUser,
+        state,
+        signupUser,
+        loginUser,
+        addTask,
+        deleteAllTask,
+        deleteTask,
+        updateTask,
+      }}
+    >
+      <TopNav />
       <Routes>
-        <Route
-          exact
-          path='/signup'
-          element={<Signup signupUser={signupUser} />}
-        />
-
-        <Route exact path='/login' element={<Login loginUser={loginUser} />} />
-
+        <Route exact path='/signup' element={<Signup />} />
+        <Route exact path='/login' element={<Login />} />
         <Route exact path='/' element={<Navigate replace to='/signup' />} />
-
-        <Route
-          exact
-          path='/todo'
-          element={
-            <Main
-              todo={state.todo}
-              addTask={addTask}
-              deleteAllTask={deleteAllTask}
-              deleteTask={deleteTask}
-              updateTask={updateTask}
-            />
-          }
-        />
+        <Route exact path='/todo' element={<Main />} />
       </Routes>
-    </div>
+    </AllContext.Provider>
   );
 };
 

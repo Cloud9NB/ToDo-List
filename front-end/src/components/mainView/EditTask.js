@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import '../../css/editTask.css';
+import { AllContext } from '../App';
 
-const EditTaskForm = ({ index, todo, updateTask, setState, editClick }) => {
+const EditTaskForm = ({ index, todo, setState, editClick }) => {
+  const { updateTask } = useContext(AllContext);
+
   const [updatedTask, setUpdatedTask] = useState('');
 
   const updatesTask = (index, oldTask, newTask) => {

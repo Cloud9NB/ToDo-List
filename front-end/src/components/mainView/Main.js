@@ -4,46 +4,35 @@ import AddTask from './AddTask';
 import SearchTask from './SearchTask';
 import TodoList from './TodoList';
 import TodoTable from './TodoTable';
+import { useContext } from 'react';
+import { AllContext } from '../App';
 
-const Main = ({ todo, addTask, deleteAllTask, deleteTask, updateTask }) => {
-  const [state, setState] = useState({
+const Main = () => {
+  const { state } = useContext(AllContext);
+
+  const [search, searchState] = useState({
     searchTask: '',
     searchValue: '',
   });
 
   const findTask = search =>
-    todo.filter(
+    state.todo.filter(
       task =>
         search === '' || task.todo.toLowerCase().includes(search.toLowerCase())
     );
 
-  const tasks = findTask(state.searchValue).map((task, index) => (
-    <TodoList
-      index={index}
-      key={index}
-      todo={task.todo}
-      deleteTask={deleteTask}
-    />
+  const tasks = findTask(search.searchValue).map((task, index) => (
+    <TodoList index={index} key={index} todo={task.todo} />
   ));
 
   return (
     <div>
       <br />
-      <AddTask addTask={addTask} />
+      <AddTask />
       <br />
-      <SearchTask
-        deleteAllTask={deleteAllTask}
-        searchTask={state.searchTask}
-        setState={setState}
-      />
+      <SearchTask searchTask={search.searchTask} searchState={searchState} />
       <br />
-      <TodoTable
-        tasks={tasks}
-        todo={todo}
-        deleteTask={deleteTask}
-        searchValue={state.searchValue}
-        updateTask={updateTask}
-      />
+      <TodoTable tasks={tasks} searchValue={search.searchValue} />
     </div>
   );
 };

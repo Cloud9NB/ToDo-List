@@ -1,20 +1,18 @@
 import TodoList from './TodoList';
+import { useContext } from 'react';
+import { AllContext } from '../App';
 
-const TodoTable = ({ todo, deleteTask, searchValue, updateTask }) => {
+const TodoTable = ({ searchValue }) => {
+  const { state } = useContext(AllContext);
+
   const findTask = search =>
-    todo.filter(
+    state.todo.filter(
       task =>
         search === '' || task.todo.toLowerCase().includes(search.toLowerCase())
     );
 
   const tasks = findTask(searchValue).map((task, index) => (
-    <TodoList
-      index={index}
-      key={index}
-      todo={task.todo}
-      deleteTask={deleteTask}
-      updateTask={updateTask}
-    />
+    <TodoList index={index} key={index} todo={task.todo} />
   ));
 
   return (

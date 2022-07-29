@@ -1,7 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import '../../css/topNav.css';
+import { useContext } from 'react';
+import { AllContext } from '../App';
 
-const TopNav = ({ logoutUser, username }) => {
+const TopNav = () => {
+  const { logoutUser, state } = useContext(AllContext);
+
   const navigate = useNavigate();
 
   const logout = () => {
@@ -12,7 +16,7 @@ const TopNav = ({ logoutUser, username }) => {
   return (
     <div className='topNav'>
       <div>
-        <p className='text-body fw-bold'>Welcome Back: {username}</p>
+        <p className='text-body fw-bold'>Welcome Back: {state.username}</p>
       </div>
 
       <div>

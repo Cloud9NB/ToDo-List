@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import '../css/signup.css';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AllContext } from './App';
 
-const Signup = ({ signupUser }) => {
+const Signup = () => {
   const [state, setState] = useState({
     username: '',
     password: '',
   });
+
+  const { signupUser } = useContext(AllContext);
 
   const navigate = useNavigate();
 
@@ -87,37 +91,6 @@ const Signup = ({ signupUser }) => {
         </div>
       </div>
     </section>
-    // <div className='signup-form'>
-    //   <form>
-    //     <h3>Sign Up Now</h3>
-    //     <label>Username: </label>
-    //     <input
-    //       type='text'
-    //       value={state.username}
-    //       placeholder='Enter your username'
-    //       onChange={event =>
-    //         setState({ ...state, username: event.target.value })
-    //       }
-    //     />
-    //     <label>Password: </label>
-    //     <input
-    //       type='password'
-    //       value={state.password}
-    //       placeholder='Enter your password'
-    //       onChange={event =>
-    //         setState({ ...state, password: event.target.value })
-    //       }
-    //     />
-    //     <button
-    //       onClick={event => {
-    //         event.preventDefault();
-    //         signup(state.username, state.password);
-    //       }}
-    //     >
-    //       Sign Up
-    //     </button>
-    //   </form>
-    // </div>
   );
 };
 

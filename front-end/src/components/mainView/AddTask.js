@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AllContext } from '../App';
 
-const AddTask = ({ addTask }) => {
+const AddTask = () => {
+  const { addTask } = useContext(AllContext);
+
   const [newTask, setNewTask] = useState('');
 
   const addNewTask = newTask => {

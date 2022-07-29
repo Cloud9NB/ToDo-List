@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import '../css/login.css';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AllContext } from './App';
 
-const Login = ({ loginUser }) => {
+const Login = () => {
   const [state, setState] = useState({
     username: '',
     password: '',
   });
+
+  const { loginUser } = useContext(AllContext);
 
   const navigate = useNavigate();
 
