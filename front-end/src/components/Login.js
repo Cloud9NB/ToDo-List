@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import '../css/login.css';
+import { useNavigate } from 'react-router-dom';
 
-const Login = ({ loginUser, transition }) => {
+const Login = ({ loginUser }) => {
   const [state, setState] = useState({
     username: '',
     password: '',
   });
 
+  const navigate = useNavigate();
+
   const login = (username, password) => {
-    loginUser(username, password).then(() => transition('SHOW'));
+    loginUser(username, password).then(() => navigate('/todo'));
   };
 
   return (
@@ -73,7 +76,7 @@ const Login = ({ loginUser, transition }) => {
                       <a
                         href='#!'
                         className='text-body fw-bold'
-                        onClick={() => transition('SIGNUP')}
+                        onClick={() => navigate('/signup')}
                       >
                         Sign Up
                       </a>

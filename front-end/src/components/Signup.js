@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import '../css/signup.css';
+import { useNavigate } from 'react-router-dom';
 
-const Signup = ({ signupUser, transition }) => {
+const Signup = ({ signupUser }) => {
   const [state, setState] = useState({
     username: '',
     password: '',
   });
 
+  const navigate = useNavigate();
+
   const signup = (username, password) =>
-    signupUser(username, password).then(() => transition('LOGIN'));
+    signupUser(username, password).then(() => navigate('/login'));
 
   return (
     <section className='intro'>
@@ -71,7 +74,7 @@ const Signup = ({ signupUser, transition }) => {
                       <a
                         href='#!'
                         className='text-body fw-bold'
-                        onClick={() => transition('LOGIN')}
+                        onClick={() => navigate('/login')}
                       >
                         Login
                       </a>

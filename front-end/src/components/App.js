@@ -1,8 +1,8 @@
 import Signup from './Signup';
 import Login from './Login';
 import Main from './mainView/Main';
-import useVisualMode from '../hooks/useVisualMode';
 import useApplicationData from '../hooks/hook';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 const App = () => {
   const {
@@ -15,29 +15,33 @@ const App = () => {
     updateTask,
   } = useApplicationData();
 
-  const LOGIN = 'LOGIN';
-  const SIGNUP = 'SIGNUP';
-  const SHOW = 'SHOW';
-
-  const { mode, transition } = useVisualMode(state.username ? SHOW : SIGNUP);
-
   return (
     <div>
-      {mode === SIGNUP && (
-        <Signup signupUser={signupUser} transition={transition} />
-      )}
-      {mode === LOGIN && (
-        <Login loginUser={loginUser} transition={transition} />
-      )}
-      {mode === SHOW && (
-        <Main
-          todo={state.todo}
-          addTask={addTask}
-          deleteAllTask={deleteAllTask}
-          deleteTask={deleteTask}
-          updateTask={updateTask}
+      <Routes>
+        <Route
+          exact
+          path='/signup'
+          element={<Signup signupUser={signupUser} />}
         />
-      )}
+
+        <Route exact path='/login' element={<Login loginUser={loginUser} />} />
+
+        <Route exact path='/' element={<Navigate replace to='signup' />} />
+
+        <Route
+          exact
+          path='/todo'
+          element={
+            <Main
+              todo={state.todo}
+              addTask={addTask}
+              deleteAllTask={deleteAllTask}
+              deleteTask={deleteTask}
+              updateTask={updateTask}
+            />
+          }
+        />
+      </Routes>
     </div>
   );
 };
