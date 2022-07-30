@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+const bcrypt = require('bcryptjs');
+const salt = bcrypt.genSaltSync();
 
 const useApplicationData = () => {
   const [state, setState] = useState({
@@ -8,18 +10,20 @@ const useApplicationData = () => {
     user: [],
     users: [],
   });
-  console.log(state.users);
+  console.log(state.user);
   const signupUser = (username, password) => {
+    const hashedPassword = bcrypt.hashSync(password, salt);
+
     const newUser = {
       username,
-      password,
+      password: hashedPassword,
     };
 
     const users = [
       ...state.users,
       {
         username,
-        password,
+        password: hashedPassword,
       },
     ];
 
@@ -29,10 +33,12 @@ const useApplicationData = () => {
   };
 
   const loginUser = (username, password) => {
+    const hashedPassword = bcrypt.hashSync(password, salt);
+
     const user = [
       {
         username,
-        password,
+        password: hashedPassword,
       },
     ];
 

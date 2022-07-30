@@ -3,6 +3,7 @@ import '../css/login.css';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AllContext } from './App';
+const bcrypt = require('bcryptjs');
 
 const Login = () => {
   const [account, setAccount] = useState({
@@ -16,7 +17,9 @@ const Login = () => {
 
   const login = (username, password) => {
     const userExist = state.users.find(
-      user => user.username === username && user.password === password
+      user =>
+        user.username === username &&
+        bcrypt.compareSync(password, user.password)
     );
 
     if (!userExist) alert('Username or password does not match');
