@@ -15,7 +15,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const validate = (username, password) => {
-    const userExist = state.users.find(users => users.username === username);
+    const userExist = state.users.find(user => user.username === username);
 
     if (userExist) alert('This username already exist');
 

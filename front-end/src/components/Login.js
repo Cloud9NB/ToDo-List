@@ -5,19 +5,25 @@ import { useContext } from 'react';
 import { AllContext } from './App';
 
 const Login = () => {
-  const [state, setState] = useState({
+  const [account, setAccount] = useState({
     username: '',
     password: '',
   });
 
-  const { loginUser } = useContext(AllContext);
+  const { loginUser, state } = useContext(AllContext);
 
   const navigate = useNavigate();
 
   const login = (username, password) => {
+    const userExist = state.users.find(
+      user => user.username === username && user.password === password
+    );
+
+    if (!userExist) alert('Username or password does not match');
+
     if (!username || !password) alert('Please fill in all fields');
 
-    if (username && password)
+    if (username && password && userExist)
       loginUser(username, password).then(() => navigate('/todo'));
   };
 
@@ -39,10 +45,13 @@ const Login = () => {
                       <input
                         type='text'
                         className='form-control form-control-lg'
-                        value={state.username}
+                        value={account.username}
                         placeholder='Enter your username'
                         onChange={event =>
-                          setState({ ...state, username: event.target.value })
+                          setAccount({
+                            ...account,
+                            username: event.target.value,
+                          })
                         }
                       />
                       <label className='form-label' htmlFor='typeEmail'>
@@ -54,10 +63,13 @@ const Login = () => {
                       <input
                         type='password'
                         className='form-control form-control-lg'
-                        value={state.password}
+                        value={account.password}
                         placeholder='Enter your password'
                         onChange={event =>
-                          setState({ ...state, password: event.target.value })
+                          setAccount({
+                            ...account,
+                            password: event.target.value,
+                          })
                         }
                       />
                       <label className='form-label' htmlFor='typePassword'>
@@ -70,7 +82,7 @@ const Login = () => {
                       type='submit'
                       onClick={event => {
                         event.preventDefault();
-                        login(state.username, state.password);
+                        login(account.username, account.password);
                       }}
                     >
                       Login
