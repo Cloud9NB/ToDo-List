@@ -11,7 +11,7 @@ const NotFound = () => {
       <p>Sorry, an error has occurred, Requested page not found!</p>
       <div>
         <a
-          href='http://www.jquery2dotnet.com'
+          href='#!'
           className='btn btn-primary btn-lg'
           onClick={event => {
             event.preventDefault();
