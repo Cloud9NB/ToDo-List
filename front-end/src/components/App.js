@@ -1,7 +1,6 @@
 import Signup from './Signup';
 import Login from './Login';
 import Main from './mainView/Main';
-import TopNav from './mainView/TopNav';
 import useApplicationData from '../hooks/hook';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { createContext } from 'react';
@@ -33,7 +32,6 @@ const App = () => {
         updateTask,
       }}
     >
-      <TopNav />
       <Routes>
         <Route exact path='/signup' element={<Signup />} />
         <Route exact path='/login' element={<Login />} />

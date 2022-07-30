@@ -6,6 +6,7 @@ import TodoList from './TodoList';
 import TodoTable from './TodoTable';
 import { useContext } from 'react';
 import { AllContext } from '../App';
+import TopNav from './TopNav';
 
 const Main = () => {
   const { state } = useContext(AllContext);
@@ -27,7 +28,7 @@ const Main = () => {
 
   return (
     <div>
-      <br />
+      <TopNav />
       <AddTask />
       <br />
       <SearchTask searchTask={search.searchTask} searchState={searchState} />
