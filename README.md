@@ -38,3 +38,4 @@ In the other terminal, `cd` into `back-end`. Run `npm install` then `npm start` 
 - `Nodemon`: A tool that helps Node.js applications to automatically restarts when file changes in the directory are detected
 - `PG`: Non-blocking PostgreSQL client for Node.js
 - `React-Router-Dom`: Enables you to implement dynamic routing in a web app
+- `Bcryptjs`: Hashes password and compares hashed password to regular password
