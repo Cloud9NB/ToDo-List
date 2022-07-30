@@ -2,14 +2,21 @@ import { useState, useContext } from 'react';
 import { AllContext } from '../App';
 
 const AddTask = () => {
-  const { addTask } = useContext(AllContext);
+  const { addTask, state } = useContext(AllContext);
 
   const [newTask, setNewTask] = useState('');
 
   const addNewTask = newTask => {
-    addTask(newTask);
-    setNewTask('');
+    const taskExist = state.todo.find(task => task.todo === newTask);
+
+    if (!taskExist) {
+      addTask(newTask);
+      setNewTask('');
+    } else {
+      alert('You already have this task');
+    }
   };
+
   return (
     <section className='row gy-2 gx-3 align-items-center'>
       <div className='col-auto'>

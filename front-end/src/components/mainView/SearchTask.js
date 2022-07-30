@@ -35,7 +35,6 @@ const SearchTask = ({ searchTask, searchState }) => {
             searchState(prev => ({
               ...prev,
               searchValue: prev.searchTask,
-              searchTask: '',
             }))
           }
         >
