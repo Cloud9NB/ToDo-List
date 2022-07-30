@@ -6,15 +6,26 @@ const useApplicationData = () => {
     username: '',
     todo: [],
     user: [],
+    users: [],
   });
-
+  console.log(state.users);
   const signupUser = (username, password) => {
     const newUser = {
       username,
       password,
     };
 
-    return axios.post('http://localhost:8001/api/register', newUser);
+    const users = [
+      ...state.users,
+      {
+        username,
+        password,
+      },
+    ];
+
+    return axios
+      .post('http://localhost:8001/api/register', newUser)
+      .then(() => setState(prev => ({ ...prev, users })));
   };
 
   const loginUser = (username, password) => {
@@ -101,10 +112,18 @@ const useApplicationData = () => {
   };
 
   useEffect(() => {
+    const apiUsers = 'http://localhost:8001/api/users';
+    axios
+      .get(apiUsers)
+      .then(data => setState(prev => ({ ...prev, users: data.data })));
+  }, []);
+
+  useEffect(() => {
     if (state.username === '') return;
 
     const apiTodo = `http://localhost:8001/api/${state.username}/tasks`;
     const apiUser = `http://localhost:8001/api/user/${state.username}`;
+
     Promise.all([axios.get(apiTodo), axios.get(apiUser)]).then(all => {
       setState(prev => ({
         ...prev,

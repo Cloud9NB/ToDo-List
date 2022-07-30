@@ -5,17 +5,25 @@ import { useContext } from 'react';
 import { AllContext } from './App';
 
 const Signup = () => {
-  const [state, setState] = useState({
+  const [account, setAccount] = useState({
     username: '',
     password: '',
   });
 
-  const { signupUser } = useContext(AllContext);
+  const { signupUser, state } = useContext(AllContext);
 
   const navigate = useNavigate();
 
-  const signup = (username, password) =>
-    signupUser(username, password).then(() => navigate('/login'));
+  const validate = (username, password) => {
+    const userExist = state.users.find(users => users.username === username);
+
+    if (userExist) alert('This username already exist');
+
+    if (!username || !password) alert('Please fill in all fields');
+
+    if (username && password && !userExist)
+      signupUser(username, password).then(() => navigate('/login'));
+  };
 
   return (
     <section className='intro'>
@@ -34,10 +42,13 @@ const Signup = () => {
                       <input
                         className='form-control form-control-lg'
                         type='text'
-                        value={state.username}
+                        value={account.username}
                         placeholder='Enter your username'
                         onChange={event =>
-                          setState({ ...state, username: event.target.value })
+                          setAccount({
+                            ...account,
+                            username: event.target.value,
+                          })
                         }
                       />
                       <label className='form-label' htmlFor='typeEmail'>
@@ -49,10 +60,13 @@ const Signup = () => {
                       <input
                         type='password'
                         className='form-control form-control-lg'
-                        value={state.password}
+                        value={account.password}
                         placeholder='Enter your password'
                         onChange={event =>
-                          setState({ ...state, password: event.target.value })
+                          setAccount({
+                            ...account,
+                            password: event.target.value,
+                          })
                         }
                       />
                       <label className='form-label' htmlFor='typePassword'>
@@ -65,7 +79,7 @@ const Signup = () => {
                       type='submit'
                       onClick={event => {
                         event.preventDefault();
-                        signup(state.username, state.password);
+                        validate(account.username, account.password);
                       }}
                     >
                       Register

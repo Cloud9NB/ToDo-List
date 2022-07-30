@@ -15,7 +15,10 @@ const Login = () => {
   const navigate = useNavigate();
 
   const login = (username, password) => {
-    loginUser(username, password).then(() => navigate('/todo'));
+    if (!username || !password) alert('Please fill in all fields');
+
+    if (username && password)
+      loginUser(username, password).then(() => navigate('/todo'));
   };
 
   return (
