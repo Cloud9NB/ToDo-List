@@ -18,6 +18,8 @@ Run command to create the tables inside the database:
 
 ## Running the project
 
+First make sure you are using the right node. To do that run `nvm use 16.15.0` before installing the packages.
+
 You need **TWO** other terminal windows/tabs for this (or some other plan for running two Node processes).
 
 In one terminal, `cd` into `front-end`. Run `npm install`. Then run `npm start` and go to `http://localhost:3000/` in your browser.

@@ -10,7 +10,7 @@ const useApplicationData = () => {
     user: [],
     users: [],
   });
-  console.log(state.user);
+
   const signupUser = (username, password) => {
     const hashedPassword = bcrypt.hashSync(password, salt);
 
