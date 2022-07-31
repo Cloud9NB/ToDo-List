@@ -16,7 +16,7 @@ module.exports = db => {
   });
 
   router.get('/user/:username', (req, res) => {
-    const { username } = req.body;
+    const { username } = req.params;
     db.query(
       `SELECT *
       FROM users
