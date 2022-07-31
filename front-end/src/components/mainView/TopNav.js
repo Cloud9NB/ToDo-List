@@ -20,9 +20,9 @@ const TopNav = () => {
       </div>
 
       <div>
-        <a href='#!' className='text-body fw-bold' onClick={() => logout()}>
+        <button className='btn btn-danger' onClick={() => logout()}>
           Log Out
-        </a>
+        </button>
       </div>
     </div>
   );

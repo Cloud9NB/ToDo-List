@@ -89,11 +89,7 @@ const Signup = () => {
                   <div>
                     <p className='mb-0'>
                       Already have an account?{' '}
-                      <a
-                        href='#!'
-                        className='text-body fw-bold'
-                        onClick={() => navigate('/login')}
-                      >
+                      <a href='/login' className='text-body fw-bold'>
                         Login
                       </a>
                     </p>
