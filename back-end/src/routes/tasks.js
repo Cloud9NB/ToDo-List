@@ -3,6 +3,7 @@ const router = express.Router();
 
 module.exports = db => {
   router.get('/:username/tasks', (req, res) => {
+    const { username } = req.params;
     db.query(
       `
       SELECT todolists.id, todo, user_id
@@ -11,7 +12,7 @@ module.exports = db => {
       WHERE username = $1
       ORDER BY id ASC;
       `,
-      [req.params.username]
+      [username]
     )
       .then(data => {
         const tasks = data.rows;
@@ -21,12 +22,13 @@ module.exports = db => {
   });
 
   router.post('/addTask/', (req, res) => {
+    const { id, todo } = req.body;
     db.query(
       `
       INSERT INTO todolists (user_id, todo)
       VALUES ($1, $2);
       `,
-      [req.body.id, req.body.todo]
+      [id, todo]
     )
       .then(data => {
         const task = data.rows;
@@ -36,12 +38,13 @@ module.exports = db => {
   });
 
   router.delete('/deleteAllTask/:userId', (req, res) => {
+    const { userId } = req.params;
     db.query(
       `
       DELETE FROM todolists
       WHERE user_id = $1;
       `,
-      [req.params.userId]
+      [userId]
     )
       .then(data => {
         const tasks = data.rows;
@@ -51,13 +54,15 @@ module.exports = db => {
   });
 
   router.delete('/deleteTask/:userId', (req, res) => {
+    const { todo } = req.body;
+    const { userId } = req.params;
     db.query(
       `
       DELETE FROM todolists
       WHERE user_id = $1
       AND todo = $2;
       `,
-      [req.params.userId, req.body.todo]
+      [userId, todo]
     )
       .then(data => {
         const tasks = data.rows;
@@ -67,6 +72,8 @@ module.exports = db => {
   });
 
   router.put('/updateTask/:userId', (req, res) => {
+    const { updatedTask, oldTask } = req.body;
+    const { userId } = req.params;
     db.query(
       `
       UPDATE todolists
@@ -74,7 +81,7 @@ module.exports = db => {
       WHERE user_id = $2
       AND todo = $3;
       `,
-      [req.body.updatedTask, req.params.userId, req.body.oldTask]
+      [updatedTask, userId, oldTask]
     )
       .then(data => {
         const tasks = data.rows;

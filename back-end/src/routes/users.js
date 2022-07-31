@@ -16,12 +16,13 @@ module.exports = db => {
   });
 
   router.get('/user/:username', (req, res) => {
+    const { username } = req.body;
     db.query(
       `SELECT *
       FROM users
       WHERE username = $1;
       `,
-      [req.params.username]
+      [username]
     )
       .then(data => {
         const users = data.rows;
@@ -31,6 +32,7 @@ module.exports = db => {
   });
 
   router.post('/login', (req, res) => {
+    const { username, password } = req.body;
     db.query(
       `
     SELECT *
@@ -38,7 +40,7 @@ module.exports = db => {
     WHERE username = $1
     AND password = $2;
     `,
-      [req.body.username, req.body.password]
+      [username, password]
     )
       .then(data => {
         const users = data.rows;
@@ -48,12 +50,13 @@ module.exports = db => {
   });
 
   router.post('/register', (req, res) => {
+    const { username, password } = req.body;
     db.query(
       `
     INSERT INTO USERS (username, password)
     VALUES ($1, $2);
     `,
-      [req.body.username, req.body.password]
+      [username, password]
     )
       .then(data => {
         const user = data.rows;
