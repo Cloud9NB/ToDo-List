@@ -3,3 +3,11 @@
 #delete-button {
   color: #f93154;
 }
+
+button.btn.btn-link.btn-rounded.btn-sm.fw-bold {
+  padding: 0px;
+}
+
+.d-flex.align-items-center > div > p {
+  margin: 0px;
+}

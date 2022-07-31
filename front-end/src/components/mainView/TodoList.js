@@ -16,7 +16,7 @@ const TodoList = ({ index, todo }) => {
   };
 
   const classNames = require('classnames');
-  const strikeThrough = classNames('ms-3', {
+  const strikeThrough = classNames('', {
     'text-decoration-line-through': state.check,
   });
 
@@ -38,7 +38,7 @@ const TodoList = ({ index, todo }) => {
 
         <td>
           <div className='d-flex align-items-center'>
-            <div className='ms-3'>
+            <div>
               <p className={strikeThrough}>{todo}</p>
             </div>
           </div>
