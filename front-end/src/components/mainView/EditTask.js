@@ -3,12 +3,18 @@ import '../../css/editTask.css';
 import { AllContext } from '../App';
 
 const EditTaskForm = ({ index, todo, setState, editClick }) => {
-  const { updateTask } = useContext(AllContext);
+  const { updateTask, state } = useContext(AllContext);
 
   const [updatedTask, setUpdatedTask] = useState('');
 
   const updatesTask = (index, oldTask, newTask) => {
-    updateTask(index, oldTask, newTask);
+    const taskExist = state.todo.find(({ todo }) => todo === newTask);
+
+    if (!taskExist) {
+      updateTask(index, oldTask, newTask);
+    } else {
+      alert('You already have this task');
+    }
   };
 
   const classNames = require('classnames');

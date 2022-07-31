@@ -7,7 +7,7 @@ const AddTask = () => {
   const [newTask, setNewTask] = useState('');
 
   const addNewTask = newTask => {
-    const taskExist = state.todo.find(task => task.todo === newTask);
+    const taskExist = state.todo.find(({ todo }) => todo === newTask);
 
     if (!taskExist) {
       addTask(newTask);
