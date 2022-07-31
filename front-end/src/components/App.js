@@ -34,10 +34,10 @@ const App = () => {
       }}
     >
       <Routes>
+        {state.username && <Route exact path='/todo' element={<Main />} />}
         <Route exact path='/signup' element={<Signup />} />
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/' element={<Navigate replace to='/signup' />} />
-        <Route exact path='/todo' element={<Main />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </AllContext.Provider>
