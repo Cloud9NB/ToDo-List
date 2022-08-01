@@ -1,11 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
-const port = 8001;
+const port = process.env.BACKEND_PORT;
 
 const cors = require('cors');
 
 const { Pool } = require('pg');
-require('dotenv').config();
 const dbParams = require('./lib/db');
 const db = new Pool(dbParams);
 db.connect();
@@ -18,7 +18,7 @@ const tasks = require('./src/routes/tasks');
 app.use('/api', users(db));
 app.use('/api', tasks(db));
 
-app.listen(port, () =>
+app.listen(port || 8001, () =>
   console.log(
     `Express seems to be listening on port ${port} so that's pretty good 👍`
   )
