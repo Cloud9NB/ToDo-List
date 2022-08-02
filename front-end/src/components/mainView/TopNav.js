@@ -10,6 +10,7 @@ const TopNav = () => {
 
   const logout = () => {
     logoutUser();
+    localStorage.clear();
     navigate('/login');
   };
 

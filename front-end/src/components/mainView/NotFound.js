@@ -12,6 +12,13 @@ const NotFound = () => {
           Take Me To The Login Form{' '}
         </a>
       </div>
+      <br />
+      <div>
+        <a href='/todo' className='btn btn-primary btn-lg'>
+          <span></span>
+          If you are already logged in{' '}
+        </a>
+      </div>
     </div>
   );
 };

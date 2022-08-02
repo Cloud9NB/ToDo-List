@@ -20,6 +20,8 @@ const App = () => {
     logoutUser,
   } = useApplicationData();
 
+  const loggedInUser = localStorage.getItem('username');
+
   return (
     <AllContext.Provider
       value={{
@@ -34,9 +36,21 @@ const App = () => {
       }}
     >
       <Routes>
-        {state.username && <Route exact path='/todo' element={<Main />} />}
-        <Route exact path='/signup' element={<Signup />} />
-        <Route exact path='/login' element={<Login />} />
+        <Route
+          exact
+          path='/todo'
+          element={loggedInUser ? <Main /> : <Navigate replace to='/signup' />}
+        />
+        <Route
+          exact
+          path='/signup'
+          element={!loggedInUser ? <Signup /> : <Navigate replace to='/todo' />}
+        />
+        <Route
+          exact
+          path='/login'
+          element={!loggedInUser ? <Login /> : <Navigate replace to='/todo' />}
+        />
         <Route exact path='/' element={<Navigate replace to='/signup' />} />
         <Route path='*' element={<NotFound />} />
       </Routes>

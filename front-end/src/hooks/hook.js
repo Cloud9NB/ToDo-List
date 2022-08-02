@@ -4,8 +4,10 @@ const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync();
 
 const useApplicationData = () => {
+  const loggedInUser = localStorage.getItem('username');
+
   const [state, setState] = useState({
-    username: '',
+    username: loggedInUser,
     todo: [],
     user: [],
     users: [],
@@ -42,11 +44,14 @@ const useApplicationData = () => {
       },
     ];
 
-    return axios.post('http://localhost:8001/api/login', user).then(() => {
-      setState(prev => {
-        return { ...prev, username: user[0].username };
-      });
-    });
+    return axios
+      .post('http://localhost:8001/api/login', user)
+      .then(() => {
+        setState(prev => {
+          return { ...prev, username: user[0].username };
+        });
+      })
+      .then(() => localStorage.setItem('username', user[0].username));
   };
 
   const addTask = newTask => {
@@ -125,7 +130,7 @@ const useApplicationData = () => {
   }, []);
 
   useEffect(() => {
-    if (state.username === '') return;
+    if (!state.username) return;
 
     const apiTodo = `http://localhost:8001/api/${state.username}/tasks`;
     const apiUser = `http://localhost:8001/api/user/${state.username}`;

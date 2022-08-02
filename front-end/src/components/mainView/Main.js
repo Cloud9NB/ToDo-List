@@ -26,15 +26,24 @@ const Main = () => {
     <TodoList index={index} key={index} todo={task.todo} />
   ));
 
+  const loggedInUser = localStorage.getItem('username');
+
   return (
-    <div>
-      <TopNav />
-      <AddTask />
-      <br />
-      <SearchTask searchTask={search.searchTask} searchState={searchState} />
-      <br />
-      <TodoTable tasks={tasks} searchValue={search.searchValue} />
-    </div>
+    <>
+      {loggedInUser && (
+        <div>
+          <TopNav />
+          <AddTask />
+          <br />
+          <SearchTask
+            searchTask={search.searchTask}
+            searchState={searchState}
+          />
+          <br />
+          <TodoTable tasks={tasks} searchValue={search.searchValue} />
+        </div>
+      )}
+    </>
   );
 };
 
