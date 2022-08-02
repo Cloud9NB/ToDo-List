@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { AllContext } from '../App';
 
 const TopNav = () => {
-  const { logoutUser, state } = useContext(AllContext);
+  const { logoutUser, loggedInUser } = useContext(AllContext);
 
   const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const TopNav = () => {
   return (
     <div className='topNav'>
       <div>
-        <p className='text-body fw-bold'>Welcome Back: {state.username}</p>
+        <p className='text-body fw-bold'>Welcome Back: {loggedInUser}</p>
       </div>
 
       <div>

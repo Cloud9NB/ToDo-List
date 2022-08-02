@@ -10,6 +10,7 @@ export const AllContext = createContext(null);
 
 const App = () => {
   const {
+    loggedInUser,
     state,
     signupUser,
     loginUser,
@@ -20,11 +21,10 @@ const App = () => {
     logoutUser,
   } = useApplicationData();
 
-  const loggedInUser = localStorage.getItem('username');
-
   return (
     <AllContext.Provider
       value={{
+        loggedInUser,
         logoutUser,
         state,
         signupUser,

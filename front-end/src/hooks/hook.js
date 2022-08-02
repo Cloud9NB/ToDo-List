@@ -145,6 +145,7 @@ const useApplicationData = () => {
   }, [state.username]);
 
   return {
+    loggedInUser,
     state,
     signupUser,
     loginUser,
