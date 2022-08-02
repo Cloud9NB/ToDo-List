@@ -16,6 +16,11 @@ const Signup = () => {
 
   const validate = (username, password) => {
     const userExist = state.users.find(user => user.username === username);
+    const checksSpaces =
+      username.indexOf(' ') >= 0 || password.indexOf(' ') >= 0;
+
+    if (checksSpaces)
+      alert('You can not register with a username or password with spaces');
 
     if (userExist) alert('This username already exist');
 
