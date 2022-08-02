@@ -26,7 +26,7 @@ const Signup = () => {
 
     if (!username || !password) alert('Please fill in all fields');
 
-    if (username && password && !userExist)
+    if (username && password && !userExist && !checksSpaces)
       signupUser(username, password).then(() => navigate('/login'));
   };
 
