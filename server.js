@@ -16,6 +16,11 @@ app.use('/api', tasks());
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'view/build')));
 }
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
+});
+
 app.listen(port, () =>
   console.log(
     `Express seems to be listening on port ${port} so that's pretty good 👍`
