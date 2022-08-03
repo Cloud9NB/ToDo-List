@@ -1,7 +1,6 @@
 let dbParams = {};
 if (process.env.DATABASE_URL) {
   dbParams.connectionString = process.env.DATABASE_URL;
-  dbParams.ssl.rejectUnauthorized = false;
 } else {
   dbParams = {
     host: process.env.PGHOST,
@@ -13,4 +12,3 @@ if (process.env.DATABASE_URL) {
 }
 
 module.exports = dbParams;
-console.log(dbParams);
