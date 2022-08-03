@@ -3,7 +3,7 @@
 # dependencies
 /node_modules
 /view/node_modules
-/build
+/view/build
 /.pnp
 .pnp.js
 package-lock.json
