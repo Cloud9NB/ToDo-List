@@ -30,7 +30,7 @@ const useApplicationData = () => {
     ];
 
     return axios
-      .post('http://localhost:8001/api/register', newUser)
+      .post('/register', newUser)
       .then(() => setState(prev => ({ ...prev, users })));
   };
 
@@ -45,7 +45,7 @@ const useApplicationData = () => {
     ];
 
     return axios
-      .post('http://localhost:8001/api/login', user)
+      .post('/login', user)
       .then(() => {
         setState(prev => {
           return { ...prev, username: user[0].username };
@@ -75,14 +75,12 @@ const useApplicationData = () => {
       };
     });
 
-    return axios.post('http://localhost:8001/api/addTask/', task);
+    return axios.post('/addTask/', task);
   };
 
   const deleteAllTask = () => {
     setState({ ...state, todo: [] });
-    return axios.delete(
-      `http://localhost:8001/api/deleteAllTask/${state.user[0].id}/`
-    );
+    return axios.delete(`/deleteAllTask/${state.user[0].id}/`);
   };
 
   const deleteTask = index => {
@@ -95,7 +93,7 @@ const useApplicationData = () => {
       );
 
     return axios
-      .delete(`http://localhost:8001/api/deleteTask/${state.user[0].id}`, {
+      .delete(`/deleteTask/${state.user[0].id}`, {
         data: { todo: deletedTask[0].todo },
       })
       .then(() =>
@@ -114,7 +112,7 @@ const useApplicationData = () => {
     state.todo[index].todo = newTask;
 
     return axios
-      .put(`http://localhost:8001/api/updateTask/${state.user[0].id}`, data)
+      .put(`/updateTask/${state.user[0].id}`, data)
       .then(() => setState(prev => ({ ...prev, todo: state.todo })));
   };
 
@@ -123,7 +121,7 @@ const useApplicationData = () => {
   };
 
   useEffect(() => {
-    const apiUsers = 'http://localhost:8001/api/users';
+    const apiUsers = '/users';
     axios
       .get(apiUsers)
       .then(data => setState(prev => ({ ...prev, users: data.data })));
@@ -132,8 +130,8 @@ const useApplicationData = () => {
   useEffect(() => {
     if (!state.username) return;
 
-    const apiTodo = `http://localhost:8001/api/${state.username}/tasks`;
-    const apiUser = `http://localhost:8001/api/user/${state.username}`;
+    const apiTodo = `/${state.username}/tasks`;
+    const apiUser = `/user/${state.username}`;
 
     Promise.all([axios.get(apiTodo), axios.get(apiUser)]).then(all => {
       setState(prev => ({

@@ -9,13 +9,13 @@ A full stack Todo List app where users can keep track of their tasks and be able
 
 ## Creating the DB
 
-Copy the `.env.example` file to `.env` in `back-end` and fill in the necessary PostgreSQL configuration.
+Copy the `.env.example` file to `.env` and fill in the necessary PostgreSQL configuration.
 
 Create a database with the command `CREATE DATABASE todolist;`.
 
 Run command to create the tables inside the database:
 
-`\i back-end/src/db/schema/create.sql;`
+`\i models/schema/create.sql;`
 
 ## Running the project
 
@@ -23,9 +23,9 @@ First make sure you are using the right node. To do that run `nvm use 16.15.0` b
 
 You need **TWO** other terminal windows/tabs for this (or some other plan for running two Node processes).
 
-In one terminal, `cd` into `front-end`. Run `npm install`. Then run `npm start` and go to `http://localhost:3000/` in your browser.
+In one terminal. Run `npm install` then `npm start` to launch the server.
 
-In the other terminal, `cd` into `back-end`. Run `npm install` then `npm start` to launch the server.
+In the other terminal, `cd` into `view`. Run `npm install`. Then run `npm start` and go to `http://localhost:3000/` in your browser.
 
 ## Dependencies
 
