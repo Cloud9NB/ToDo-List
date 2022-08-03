@@ -2,10 +2,10 @@
 
 A full stack Todo List app where users can keep track of their tasks and be able to delete them if completed.
 
-![Registration](https://github.com/Cloud9NB/ToDo-List/blob/main/front-end/public/docs/screenshots/registration.png?raw=true)
-![Todo Form](https://github.com/Cloud9NB/ToDo-List/blob/main/front-end/public/docs/screenshots/main-page.png?raw=true)
-![Edit Form](https://github.com/Cloud9NB/ToDo-List/blob/main/front-end/public/docs/screenshots/edit-form.png?raw=true)
-![404](https://github.com/Cloud9NB/ToDo-List/blob/main/front-end/public/docs/screenshots/404.png?raw=true)
+![Registration](https://github.com/Cloud9NB/ToDo-List/blob/main/view/public/docs/screenshots/registration.png?raw=true)
+![Todo Form](https://github.com/Cloud9NB/ToDo-List/blob/main/view/public/docs/screenshots/main-page.png?raw=true)
+![Edit Form](https://github.com/Cloud9NB/ToDo-List/blob/main/view/public/docs/screenshots/edit-form.png?raw=true)
+![404](https://github.com/Cloud9NB/ToDo-List/blob/main/view/public/docs/screenshots/404.png?raw=true)
 
 ## Creating the DB
 
