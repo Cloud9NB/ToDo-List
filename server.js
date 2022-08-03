@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/api', users());
 app.use('/api', tasks());
-app.use(express.static(path.join(__dirname, 'view/public')));
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'view/build')));
 }

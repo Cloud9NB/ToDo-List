@@ -30,7 +30,7 @@ const useApplicationData = () => {
     ];
 
     return axios
-      .post('/register', newUser)
+      .post('/api/register', newUser)
       .then(() => setState(prev => ({ ...prev, users })));
   };
 
@@ -45,7 +45,7 @@ const useApplicationData = () => {
     ];
 
     return axios
-      .post('/login', user)
+      .post('/api/login', user)
       .then(() => {
         setState(prev => {
           return { ...prev, username: user[0].username };
@@ -75,12 +75,12 @@ const useApplicationData = () => {
       };
     });
 
-    return axios.post('/addTask/', task);
+    return axios.post('/api/addTask/', task);
   };
 
   const deleteAllTask = () => {
     setState({ ...state, todo: [] });
-    return axios.delete(`/deleteAllTask/${state.user[0].id}/`);
+    return axios.delete(`/api/deleteAllTask/${state.user[0].id}/`);
   };
 
   const deleteTask = index => {
@@ -93,7 +93,7 @@ const useApplicationData = () => {
       );
 
     return axios
-      .delete(`/deleteTask/${state.user[0].id}`, {
+      .delete(`/api/deleteTask/${state.user[0].id}`, {
         data: { todo: deletedTask[0].todo },
       })
       .then(() =>
@@ -112,7 +112,7 @@ const useApplicationData = () => {
     state.todo[index].todo = newTask;
 
     return axios
-      .put(`/updateTask/${state.user[0].id}`, data)
+      .put(`/api/updateTask/${state.user[0].id}`, data)
       .then(() => setState(prev => ({ ...prev, todo: state.todo })));
   };
 
@@ -121,7 +121,7 @@ const useApplicationData = () => {
   };
 
   useEffect(() => {
-    const apiUsers = '/users';
+    const apiUsers = '/api/users';
     axios
       .get(apiUsers)
       .then(data => setState(prev => ({ ...prev, users: data.data })));
@@ -130,8 +130,8 @@ const useApplicationData = () => {
   useEffect(() => {
     if (!state.username) return;
 
-    const apiTodo = `/${state.username}/tasks`;
-    const apiUser = `/user/${state.username}`;
+    const apiTodo = `/api/${state.username}/tasks`;
+    const apiUser = `/api/user/${state.username}`;
 
     Promise.all([axios.get(apiTodo), axios.get(apiUser)]).then(all => {
       setState(prev => ({
