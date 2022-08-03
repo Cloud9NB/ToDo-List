@@ -14,7 +14,10 @@ app.use('/api', users());
 app.use('/api', tasks());
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'view/build')));
+  app.use(express.static('view/build'));
+  app.get('*', (req, res) => {
+    req.sendFile(path.resolve(__dirname, 'view/build', 'index.html'));
+  });
 }
 
 app.get('*', (req, res) => {
