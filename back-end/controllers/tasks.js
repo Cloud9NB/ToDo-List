@@ -1,8 +1,10 @@
-const express = require('express');
-const router = express.Router();
+const { Pool } = require('pg');
+const dbParams = require('../models/lib/db');
+const db = new Pool(dbParams);
+db.connect();
 
-module.exports = db => {
-  router.get('/:username/tasks', (req, res) => {
+module.exports = {
+  grabsUsersTasks: (req, res) => {
     const { username } = req.params;
     db.query(
       `
@@ -19,9 +21,9 @@ module.exports = db => {
         res.json(tasks);
       })
       .catch(error => console.log('Error~~~', error));
-  });
+  },
 
-  router.post('/addTask/', (req, res) => {
+  addsTask: (req, res) => {
     const { id, todo } = req.body;
     db.query(
       `
@@ -35,9 +37,9 @@ module.exports = db => {
         res.json(task);
       })
       .catch(error => console.log('Error~~~', error));
-  });
+  },
 
-  router.delete('/deleteAllTask/:userId', (req, res) => {
+  deleteAllTask: (req, res) => {
     const { userId } = req.params;
     db.query(
       `
@@ -51,9 +53,9 @@ module.exports = db => {
         res.json(tasks);
       })
       .catch(error => console.log('Error~~~', error));
-  });
+  },
 
-  router.delete('/deleteTask/:userId', (req, res) => {
+  deleteSingleTask: (req, res) => {
     const { todo } = req.body;
     const { userId } = req.params;
     db.query(
@@ -69,9 +71,9 @@ module.exports = db => {
         res.json(tasks);
       })
       .catch(error => console.log('Error~~~', error));
-  });
+  },
 
-  router.put('/updateTask/:userId', (req, res) => {
+  editsTask: (req, res) => {
     const { updatedTask, oldTask } = req.body;
     const { userId } = req.params;
     db.query(
@@ -88,7 +90,5 @@ module.exports = db => {
         res.json(tasks);
       })
       .catch(error => console.log('Error~~~', error));
-  });
-
-  return router;
+  },
 };

@@ -1,8 +1,10 @@
-const express = require('express');
-const router = express.Router();
+const { Pool } = require('pg');
+const dbParams = require('../models/lib/db');
+const db = new Pool(dbParams);
+db.connect();
 
-module.exports = db => {
-  router.get('/users', (req, res) => {
+module.exports = {
+  getsAllUsers: (req, res) => {
     db.query(
       `
       SELECT * FROM users;
@@ -13,9 +15,25 @@ module.exports = db => {
         res.json(users);
       })
       .catch(error => console.log('Error~~~', error));
-  });
+  },
 
-  router.get('/user/:username', (req, res) => {
+  registersUser: (req, res) => {
+    const { username, password } = req.body;
+    db.query(
+      `
+    INSERT INTO USERS (username, password)
+    VALUES ($1, $2);
+    `,
+      [username, password]
+    )
+      .then(data => {
+        const user = data.rows;
+        res.json(user);
+      })
+      .catch(error => console.log('Error~~~', error));
+  },
+
+  loggedInUser: (req, res) => {
     const { username } = req.params;
     db.query(
       `SELECT *
@@ -29,9 +47,9 @@ module.exports = db => {
         res.json(users);
       })
       .catch(error => console.log('Error~~~', error));
-  });
+  },
 
-  router.post('/login', (req, res) => {
+  logsInUser: (req, res) => {
     const { username, password } = req.body;
     db.query(
       `
@@ -47,23 +65,5 @@ module.exports = db => {
         res.json(users);
       })
       .catch(error => console.log('Error~~~', error));
-  });
-
-  router.post('/register', (req, res) => {
-    const { username, password } = req.body;
-    db.query(
-      `
-    INSERT INTO USERS (username, password)
-    VALUES ($1, $2);
-    `,
-      [username, password]
-    )
-      .then(data => {
-        const user = data.rows;
-        res.json(user);
-      })
-      .catch(error => console.log('Error~~~', error));
-  });
-
-  return router;
+  },
 };
