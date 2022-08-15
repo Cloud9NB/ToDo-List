@@ -1,4 +1,5 @@
 let dbParams = {};
+
 if (process.env.DATABASE_URL) {
   dbParams.connectionString = process.env.DATABASE_URL;
 } else {
@@ -11,4 +12,7 @@ if (process.env.DATABASE_URL) {
   };
 }
 
-module.exports = dbParams;
+const { Pool } = require('pg');
+const db = new Pool(dbParams);
+
+module.exports = { db };

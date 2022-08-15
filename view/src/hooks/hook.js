@@ -124,7 +124,7 @@ const useApplicationData = () => {
     const apiUsers = '/api/users';
     axios
       .get(apiUsers)
-      .then(data => setState(prev => ({ ...prev, users: data.data })));
+      .then(({ data }) => setState(prev => ({ ...prev, users: data })));
   }, []);
 
   useEffect(() => {
